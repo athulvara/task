@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body bgcolor="SlateGray">
+<br>
+<center><pre style="background-color:orange;font:348%;padding:28px;">  R E G I S T R A T I O N </pre>
+<br>
+<form action="http://127.0.0.1:8000/login/" method="POST">
+{% csrf_token %}
+    <input type="text" name=username placeholder="Enter your username "><br><br>
+    <input type="password" name=pass0 placeholder="Enter your password "><br><br>
+    <input type="password" name=pass1 placeholder="Enter your password "><br><br>
+    <input type="submit" ><br><br>
+
+</form>
+<br>
+    {% for msg in messages %}
+{{msg}}
+{% endfor %}
+</center>
+</body>
+</html>

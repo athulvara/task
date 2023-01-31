@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+
+    <script>
+var subjectObject = {
+  "Kannur": {
+    "Payyanur": ["Current","FD","Salary"],
+    "Thaliparmba": ["Current","FD","Salary"],
+    "Pazhangadi": ["Current","FD","Salary"]
+  },
+  "Bangalore": {
+    "Hosur": ["Current","FD","Salary"],
+    "Electronic City": ["Current","FD","Salary"],
+    "Mantri Square":["Current","FD","Salary"]
+  },
+
+  "Chennai": {
+    "Anna Nagar": ["Current","FD","Salary"],
+    "Ashok Nagar": ["Current","FD","Salary"],
+    "Ambattoor": ["Current","FD","Salary"]
+  },
+
+  "Ernakulam": {
+    "Aluva": ["Current","FD","Salary"],
+    "Edapally": ["Current","FD","Salary"],
+    "Kochi": ["Current","FD","Salary"]
+  },
+
+  "Mumbai": {
+    "Andheri": ["Current","FD","Salary"],
+    "Bandra": ["Current","FD","Salary"],
+    "Juhu": ["Current","FD","Salary"]
+  }
+
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    chapterSel.length = 1;
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+}
+</script>
+
+
+</head>
+<body bgcolor="SlateGray">
+<br><br>
+<center><H2 style="background-color:LightSalmon;font:Verdana;padding:28px;"> F O R M </H2>
+<br><br>
+
+   <form action="/" method="post">
+ {% csrf_token %}
+
+    <input type="text" name=name placeholder="Enter your name "><br><br>
+    <input type="date" name=dob placeholder="Enter your date of birth "><br><br>
+    <input type="number" name=age placeholder="Enter your age "><br><br>
+       Select your gender:<br>
+       <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label><br><br>
+    <input type="number" name=phone placeholder="Enter your phone number "><br><br>
+    <input type="email" name=email placeholder="Enter your email "><br><br>
+    <input type="text" name=address placeholder="Enter your address "><br><br>
+
+
+
+         District: <select name="subject" id="subject">
+    <option value="" selected="selected">Select district</option>
+  </select>
+  <br><br>
+  Branch: <select name="topic" id="topic">
+    <option value="" selected="selected">Please select branch first</option>
+  </select>
+  <br><br>
+  Account Type: <select name="chapter" id="chapter">
+    <option value="" selected="selected">Select Account type</option>
+  </select>
+  <br><br>
+
+
+       Materials required:<br>
+       <input type="checkbox" id="debit" name="debit" value="debit">
+            <label for="debit"> Debit Card</label><br>
+        <input type="checkbox" id="credit" name="credit" value="credit">
+            <label for="credit"> Credit Card</label><br>
+        <input type="checkbox" id="cheque" name="cheque" value="cheque">
+            <label for="cheque"> Cheque Book</label><br><br>
+
+
+    <input type="submit">
+       <input type="button" onclick="#" value="Logout">
+    <br><br>
+
+
+
+
+</form>
+
+    <br>
+</center>
+</body>
+</html>
